@@ -52,3 +52,11 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# MacOS filesystem
+*.DS_Store
+
+# Other cache and IDE settings
+.cache
+.idea
+.vscode
