@@ -20,7 +20,7 @@ jobs:
 
     - name: Configure CMake
       run: |
-        ls .
+        echo | ls .
         cmake -B ./build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
 
     - name: Build
