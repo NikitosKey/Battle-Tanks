@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QFont>
+#include <QFontDatabase>
+#include <QSpacerItem>
 
 #include "components/resizable_qlabel/resizable_qlabel.h"
 
@@ -16,14 +19,12 @@ public:
 
 private:
     ResizableQLabel *imageLabel;
-    QVBoxLayout *layout;
+    QGridLayout *layout;
     QPushButton *_1playerButton;
     QPushButton *_2playersButton;
+    QPushButton *constructionButton;
     QSpacerItem *leftSpacer;
     QSpacerItem *rightSpacer;
-    QPushButton *constructionButton;
-
-
 };
 
 

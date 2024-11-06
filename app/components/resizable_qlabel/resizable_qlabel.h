@@ -12,13 +12,12 @@ class ResizableQLabel : public QLabel {
     QPixmap originalPixmap;
 
 public:
-    ResizableQLabel(QWidget* parent = nullptr) : QLabel(parent) {
-        setMinimumSize(100, 100);
-    }
+    ResizableQLabel(QWidget* parent = nullptr);
+    
+    ~ResizableQLabel();
 
     void setPixmap(const QPixmap& pixmap);
 
-protected:
     void resizeEvent(QResizeEvent* event) override;
 
 private:
