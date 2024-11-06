@@ -1,4 +1,4 @@
-name: CMake on a single platform
+name: build test and lint
 
 on:
   push:
@@ -13,22 +13,16 @@ jobs:
     runs-on: ubuntu-latest 
 
     steps:
-
-    - uses: actions/checkout@v4
-
     - name: Install Deps
       run: |
         sudo apt-get update
         sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-base-private-dev ninja-build clang cmake
-        ls ~/Qt/6.8.0
-
 
     - name: Configure CMake
-      run: cmake -DCMAKE_PREFIX_PATH=~/Qt/6.8.0/gcc_64 -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
+      run: cmake  -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
 
     - name: Build
-      run: cmake -DCMAKE_PREFIX_PATH=~/Qt/6.8.0/gcc_64 --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-
+      run: ninja build
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}} -VV
