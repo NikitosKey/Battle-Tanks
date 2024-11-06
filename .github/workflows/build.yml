@@ -19,8 +19,9 @@ jobs:
         sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-base-private-dev ninja-build clang cmake
 
     - name: Configure CMake
-      working-directory: ${{github.workspace}}
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
+      run: |
+        ls .
+        cmake -B ./build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
 
     - name: Build
       run: ninja build
