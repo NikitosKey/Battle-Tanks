@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest 
 
     steps:
+    uses: actions/checkout@v4
     - name: Install Deps
       run: |
         sudo apt-get update
@@ -22,7 +23,6 @@ jobs:
       run: |
         cd ${{github.workspace}}
         mkdir build
-        ls
         cmake . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
 
     - name: Build
