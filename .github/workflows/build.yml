@@ -20,7 +20,9 @@ jobs:
 
     - name: Configure CMake
       run: |
-        cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
+        cd ${{github.workspace}}
+        mkdir build
+        cmake . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
 
     - name: Build
       working-directory: ${{github.workspace}}/build
