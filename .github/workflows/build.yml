@@ -20,12 +20,17 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y cppcheck clang-tidy
+
+    - name: Fetch base branch
+      run: |
+        BASE_BRANCH="${{ github.base_ref || 'main' }}"
+        git fetch origin $BASE_BRANCH
+
     - name: Get changed files
       id: changed_files
       run: |
         BASE_BRANCH="${{ github.base_ref || 'main' }}"
-        git fetch origin $BASE_BRANCH
-        CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
+        CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD || true)
         echo "::set-output name=files::$CHANGED_FILES"
 
     - name: Run CMake lint on changed files
