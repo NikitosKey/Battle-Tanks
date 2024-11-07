@@ -28,7 +28,7 @@ jobs:
 
     - name: Build
       working-directory: ${{github.workspace}}/build
-      run: ninja build
+      run: ninja 
 
     - name: Test
       working-directory: ${{github.workspace}}/build
