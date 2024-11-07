@@ -19,12 +19,10 @@ jobs:
     - name: Install Deps
       run: |
         sudo apt-get update
-        sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-base-private-dev ninja-build clang cmake
+        sudo apt install -y qt6-svg-dev qt6-base-dev qt6-base-dev-tools qt6-base-private-dev ninja-build clang cmake
 
     - name: Configure CMake
       run: |
-        cd ${{github.workspace}}
-        mkdir build
         cmake . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
 
     - name: Build
