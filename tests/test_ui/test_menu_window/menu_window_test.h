@@ -1,9 +1,6 @@
 #include <QTest>
 
-
-class TestMenuWindow : public QObject
-{
-    Q_OBJECT
+class TestMenuWindow : public QObject {
+  Q_OBJECT
 private slots:
-    
 };
