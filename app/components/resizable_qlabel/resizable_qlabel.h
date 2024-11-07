@@ -1,28 +1,27 @@
 #ifndef resizableqlabel_h
 #define resizableqlabel_h
 
+#include <QLabel>
+#include <QPixmap>
 #include <QPushButton>
+#include <QResizeEvent>
 #include <QVBoxLayout>
 #include <QWidget>
-#include <QLabel>
-#include <QResizeEvent>
-#include <QPixmap>
 
 class ResizableQLabel : public QLabel {
-    QPixmap originalPixmap;
+  QPixmap originalPixmap;
 
 public:
-    ResizableQLabel(QWidget* parent = nullptr) : QLabel(parent) {
-        setMinimumSize(100, 100);
-    }
+  ResizableQLabel(QWidget *parent = nullptr);
 
-    void setPixmap(const QPixmap& pixmap);
+  ~ResizableQLabel();
 
-protected:
-    void resizeEvent(QResizeEvent* event) override;
+  void setPixmap(const QPixmap &pixmap);
+
+  void resizeEvent(QResizeEvent *event) override;
 
 private:
-    void updateScaledPixmap();
+  void updateScaledPixmap();
 };
 
 #endif
