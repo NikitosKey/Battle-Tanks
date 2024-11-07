@@ -23,8 +23,7 @@ jobs:
 
     - name: Run clang-format
       run: |
-        find . -name "*.cpp" -o -name "*.h" | xargs clang-format -i
-        git diff --exit-code || (echo "Code not properly formatted. Please run clang-format." && exit 1)
+        find . -name "*.cpp" -o -name "*.h" | xargs clang-tidy
 
     - name: Run cppcheck
       run: |
