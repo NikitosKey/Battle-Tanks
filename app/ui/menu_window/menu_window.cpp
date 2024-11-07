@@ -4,7 +4,7 @@
 MenuWindow::MenuWindow()
 {
     this->setStyleSheet("background-color: black;");
-    this->setWindowTitle("Menu");
+    this->setWindowTitle("Menu") 
 
     ResizableQLabel *imageLabel = new ResizableQLabel(this);
     imageLabel->setPixmap(QPixmap(":/assets/ui/menu/logo.png"));
@@ -14,8 +14,7 @@ MenuWindow::MenuWindow()
     QPushButton *_2playersButton = new QPushButton("2 Players", this);
     QPushButton *constructionButton = new QPushButton("Constructon", this);
     //connect(_1playerButton, &QPushButton::clicked, qApp, &QCoreApplication::quit);
-
-
+    
     int id = QFontDatabase::addApplicationFont(":/assets/fonts/Pixel Emulator.otf");
     QString family = QFontDatabase::applicationFontFamilies(id).at(0);
     QFont Buttonfont(family, 24);
