@@ -20,7 +20,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install build-essential libgl1-mesa-dev
-        sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-base-private-dev ninja-build clang cmake
+        sudo apt install -y qt6-default qt6-base qt6-base-dev qt6-base-dev-tools qt6-base-private-dev ninja-build clang cmake
 
     - name: Configure CMake
       run: |
@@ -32,5 +32,5 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ./tests/TestComponents
+      run: ctest . -VV
 
