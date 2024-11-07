@@ -45,23 +45,23 @@ jobs:
           CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
           echo "::set-output name=files::$CHANGED_FILES"
 
-      - name: Run CMake lint on changed files
-        if: ${{ steps.changed_files.outputs.files }}
-        run: |
-          for file in ${{ steps.changed_files.outputs.files }}; do
-            if [[ $file == *.cmake || $file == CMakeLists.txt ]]; then
-              echo "Linting $file with CMakeLint"
-              cmakelint "$file"
-            fi
-          done
+    - name: Run CMake lint on changed files
+      if: ${{ steps.changed_files.outputs.files }}
+      run: |
+        for file in ${{ steps.changed_files.outputs.files }}; do
+          if [[ $file == *.cmake || $file == CMakeLists.txt ]]; then
+            echo "Linting $file with CMakeLint"
+            cmakelint "$file"
+          fi
+        done
 
-      - name: Run C++ lint (Cppcheck and Clang-Tidy) on changed files
-        if: ${{ steps.changed_files.outputs.files }}
-        run: |
-          for file in ${{ steps.changed_files.outputs.files }}; do
-            if [[ $file == *.cpp || $file == *.h ]]; then
-              echo "Linting $file with Cppcheck and Clang-Tidy"
-              cppcheck "$file" --enable=all --suppress=missingIncludeSystem
-              clang-tidy "$file" -- -std=c++17
-            fi
-          done
+    - name: Run C++ lint (Cppcheck and Clang-Tidy) on changed files
+      if: ${{ steps.changed_files.outputs.files }}
+      run: |
+        for file in ${{ steps.changed_files.outputs.files }}; do
+          if [[ $file == *.cpp || $file == *.h ]]; then
+            echo "Linting $file with Cppcheck and Clang-Tidy"
+            cppcheck "$file" --enable=all --suppress=missingIncludeSystem
+            clang-tidy "$file" -- -std=c++17
+          fi
+        done
