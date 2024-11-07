@@ -1,4 +1,4 @@
-name: build and test
+name: Run tests
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
   BUILD_TYPE: Debug
 
 jobs:
-  job:
+  test:
     runs-on: ubuntu-latest 
 
     steps:
