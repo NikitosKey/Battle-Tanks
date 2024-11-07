@@ -13,8 +13,7 @@ MenuWindow::MenuWindow()
     QPushButton *_1playerButton = new QPushButton("1 Player", this);
     QPushButton *_2playersButton = new QPushButton("2 Players", this);
     QPushButton *constructionButton = new QPushButton("Constructon", this);
-    connect(_1playerButton, &QPushButton::clicked, 
-            qApp, &QCoreApplication::quit);
+    //connect(_1playerButton, &QPushButton::clicked, qApp, &QCoreApplication::quit);
 
 
     int id = QFontDatabase::addApplicationFont(":/assets/fonts/Pixel Emulator.otf");
