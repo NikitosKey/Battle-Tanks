@@ -21,38 +21,15 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cppcheck clang-tidy
 
-    - name: Fetch base branch
+    - name: Run clang-format
       run: |
-        BASE_BRANCH="${{ github.base_ref || 'main' }}"
-        git fetch origin $BASE_BRANCH
+        find . -name "*.cpp" -o -name "*.h" | xargs clang-format -i
+        git diff --exit-code || (echo "Code not properly formatted. Please run clang-format." && exit 1)
 
-    - name: Get changed files
-      id: changed_files
+    - name: Run cppcheck
       run: |
-        BASE_BRANCH="${{ github.base_ref || 'main' }}"
-        CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD || true)
-        echo "::set-output name=files::$CHANGED_FILES"
+        cppcheck --enable=all --inconclusive --std=c++20 --error-exitcode=1 .
 
-    - name: Run CMake lint on changed files
-      if: ${{ steps.changed_files.outputs.files }}
-      run: |
-        for file in ${{ steps.changed_files.outputs.files }}; do
-          if [[ $file == *.cmake || $file == CMakeLists.txt ]]; then
-            echo "Linting $file with CMakeLint"
-            cmakelint "$file"
-          fi
-        done
-
-    - name: Run C++ lint (Cppcheck and Clang-Tidy) on changed files
-      if: ${{ steps.changed_files.outputs.files }}
-      run: |
-        for file in ${{ steps.changed_files.outputs.files }}; do
-          if [[ $file == *.cpp || $file == *.h ]]; then
-            echo "Linting $file with Cppcheck and Clang-Tidy"
-            cppcheck "$file" --enable=all --suppress=missingIncludeSystem
-            clang-tidy "$file" -- -std=c++17
-          fi
-        done
 
   build:
     runs-on: ubuntu-latest 
