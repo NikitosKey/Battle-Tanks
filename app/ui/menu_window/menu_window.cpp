@@ -1,6 +1,7 @@
 #include "menu_window.h"
 #include "components/resizable_qlabel/resizable_qlabel.h"
 
+
 MenuWindow::MenuWindow() {
   this->setStyleSheet("background-color: black;");
   this->setWindowTitle("Menu");
