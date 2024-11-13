@@ -12,6 +12,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG_BUILD")
+
 find_package(Qt6 REQUIRED COMPONENTS Widgets Test)
 add_subdirectory(app)
 
@@ -23,7 +25,3 @@ qt_add_resources(BattleTanks "assets"
         assets/ui/menu/logo.png
         assets/fonts/Pixel\ Emulator.otf
 )
-
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_definitions(DEBUG_BUILD)
-endif ()
