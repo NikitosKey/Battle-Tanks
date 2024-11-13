@@ -9,6 +9,7 @@
 #include <QWidget>
 
 #include "components/resizable_label/resizable_label.h"
+#include "debug_log.h"
 #include "ui/construction_layout/construction_layout.h"
 #include "ui/levels_layout/levels_layout.h"
 

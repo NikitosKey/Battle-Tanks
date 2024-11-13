@@ -37,25 +37,26 @@ LevelsLayout::LevelsLayout() {
     addWidget(levelButton, 0, 1, 1, 1);
     addWidget(nextButton, 0, 2, 1, 1);
 
-    qDebug() << "LevelsLayout created!";
+    DEBUG_LOG("LevelsLayout created!");
 }
 
 LevelsLayout::~LevelsLayout() {
     qDeleteAll(this->children());
-    qDebug() << "LevelsLayout deleted!";
+
+    DEBUG_LOG("LevelsLayout deleted!");
 }
 
 void LevelsLayout::beforeButtonClicked() {
 
-    qDebug() << "beforeButtonClicked";
+    DEBUG_LOG("beforeButtonClicked");
 }
 
 void LevelsLayout::levelButtonClicked() {
 
-    qDebug() << "levelButtonClicked";
+    DEBUG_LOG("levelButtonClicked");
 }
 
 void LevelsLayout::nextButtonClicked() {
 
-    qDebug() << "nextButtonClicked";
+    DEBUG_LOG("nextButtonClicked");
 }

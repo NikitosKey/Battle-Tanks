@@ -8,6 +8,8 @@
 #include <QSpacerItem>
 #include <QWidget>
 
+#include "debug_log.h"
+
 class ConstructionLayout : public QGridLayout {
     Q_OBJECT
 
