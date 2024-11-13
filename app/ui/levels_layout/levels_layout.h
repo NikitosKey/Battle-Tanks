@@ -10,6 +10,7 @@
 #include <QString>
 #include <QWidget>
 
+#include "debug_log.h"
 #include "ui/game_layout/game_layout.h"
 
 class LevelsLayout : public QGridLayout {

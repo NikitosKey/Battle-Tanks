@@ -36,11 +36,13 @@ MenuLayout::MenuLayout() {
     this->addItem(leftSpacer, 1, 0, 2, 1);
     this->addItem(rightSpacer, 1, 2, 2, 1);
 
-    qDebug() << "MenuLayout created";
+
+    DEBUG_LOG("MenuLayout created");
 }
 MenuLayout::~MenuLayout() {
     qDeleteAll(this->children());
-    qDebug() << "MenuLayout deleted!";
+
+    DEBUG_LOG("MenuLayout deleted!");
 }
 void MenuLayout::playerButtonClicked() {
     QWidget *parent = parentWidget();
@@ -48,10 +50,12 @@ void MenuLayout::playerButtonClicked() {
     parent->setStyleSheet("background-color: gray;");
     auto *levels = new LevelsLayout;
     parent->setLayout(levels);
+    DEBUG_LOG("playerButton clicked");
 }
 void MenuLayout::constructionButtonClicked() {
     QWidget *parent = parentWidget();
     qDeleteAll(parent->children());
     auto *construction = new ConstructionLayout;
     parent->setLayout(construction);
+    DEBUG_LOG("constructionButton clicked");
 }

@@ -1,9 +1,9 @@
 #include "construction_layout.h"
 
 ConstructionLayout::ConstructionLayout() {
-    qDebug() << "ConstructionLayout created!";
+    DEBUG_LOG("ConstructionLayout created!");
 }
 
 ConstructionLayout::~ConstructionLayout() {
-    qDebug() << "ConstructionLayout deleted!";
+    DEBUG_LOG("ConstructionLayout deleted!");
 }

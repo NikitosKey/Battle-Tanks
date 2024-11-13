@@ -1,9 +1,9 @@
 #include "game_layout.h"
 
 GameLayout::GameLayout() {
-    qDebug() << "GameLayout created!";
+    DEBUG_LOG("GameLayout created!");
 }
 
 GameLayout::~GameLayout() {
-    qDebug() << "GameLayout deleted!";
+    DEBUG_LOG("GameLayout deleted!");
 }
