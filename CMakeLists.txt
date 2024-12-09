@@ -26,4 +26,5 @@ qt_add_resources(BattleTanks "assets"
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(DEBUG_BUILD)
+    add_compile_options(-Wall -Wextra -Wpedantic -O0 -g -fno-sanitize-recover=all -fsanitize=address,undefined,leak)
 endif ()
