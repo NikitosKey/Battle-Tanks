@@ -52,7 +52,11 @@ void LevelsLayout::beforeButtonClicked() {
 }
 
 void LevelsLayout::levelButtonClicked() {
-
+    QWidget *parent = parentWidget();
+    qDeleteAll(parent->children());
+    parent->setStyleSheet("background-color: gray;");
+    auto gameLayout = new GameLayout;
+    parent->setLayout(gameLayout);
     DEBUG_LOG("levelButtonClicked");
 }
 

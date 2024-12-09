@@ -22,7 +22,7 @@ public:
 
 private slots:
     static void beforeButtonClicked();
-    static void levelButtonClicked();
+    void levelButtonClicked();
     static void nextButtonClicked();
 
 private:
