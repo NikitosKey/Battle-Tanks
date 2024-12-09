@@ -1,5 +1,6 @@
 qt_add_executable(BattleTanks
         main.cpp
+        debug_log.h
         ui/window/window.cpp
         ui/window/window.h
         ui/menu_layout/menu_layout.cpp
@@ -8,11 +9,12 @@ qt_add_executable(BattleTanks
         ui/levels_layout/levels_layout.h
         ui/construction_layout/construction_layout.cpp
         ui/construction_layout/construction_layout.h
-        #        ui/game_layout/game_layout.cpp
-        #        ui/game_layout/game_layout.h
+        ui/game_layout/game_layout.cpp
+        ui/game_layout/game_layout.h
         components/resizable_label/resizable_label.cpp
         components/resizable_label/resizable_label.h
-        debug_log.h
+#        game/game_widget.cpp
+#        game/game_widget.h
 )
 
 target_include_directories(BattleTanks PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
