@@ -31,6 +31,7 @@ jobs:
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
         cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        mv compile_commands.json ..
 
     - name: Build
       working-directory: ${{github.workspace}}/build
