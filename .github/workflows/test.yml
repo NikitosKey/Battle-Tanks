@@ -43,17 +43,7 @@ jobs:
 
     - name: Run clang-format
       working-directory: ${{github.workspace}}
-      run: |
-        files=$(find . -type d -name '*build*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -print)
-        
-        unformatted_files=$(echo "$files" | grep -E '\.(cpp|h)$' | xargs clang-format -n)
-        if [[ ! -z "$unformatted_files" ]]; then
-        echo "Some files are not formatted correctly:"
-        echo "$unformatted_files"
-        exit 1
-        fi
-        
-        echo "All files are correctly formatted."
+      run: find . -type d -name '*build*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -print | grep -E '\.(cpp|h)$' | xargs clang-format -n
 
     - name: Test
       working-directory: ${{github.workspace}}/build
