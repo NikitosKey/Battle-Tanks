@@ -1,0 +1,95 @@
+name: Check code quality
+
+on:
+  push:
+  pull_request:
+    branches: [ main, dev ]
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential libgl1-mesa-dev libc++-dev libc++abi-dev binutils binutils-dev clang gdb pkg-config 
+          sudo apt install -y qt6-base-dev qt6-base-private-dev qt6-declarative-dev qt6-declarative-private-dev qt6-tools-dev qt6-tools-private-dev qt6-scxml-dev qt6-documentation-tools libqt6core5compat6-dev qt6-tools-dev-tools qt6-l10n-tools qt6-shader-baker libqt6shadertools6-dev qt6-quick3d-dev qt6-quick3d-dev-tools libqt6svg6-dev libqt6quicktimeline6-dev libqt6serialport6-dev 
+          sudo apt install -y ninja-build cmake clang-tidy clang-format
+
+      - name: Configure CMake
+        working-directory: ${{github.workspace}}
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
+          cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          mv compile_commands.json ..
+
+      - name: Run clang-tidy
+        working-directory: ${{github.workspace}}
+        run: echo '-- -I ./' | find . -type d -name '*build*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -print | xargs clang-tidy
+
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential libgl1-mesa-dev libc++-dev libc++abi-dev binutils binutils-dev clang gdb pkg-config 
+          sudo apt install -y qt6-base-dev qt6-base-private-dev qt6-declarative-dev qt6-declarative-private-dev qt6-tools-dev qt6-tools-private-dev qt6-scxml-dev qt6-documentation-tools libqt6core5compat6-dev qt6-tools-dev-tools qt6-l10n-tools qt6-shader-baker libqt6shadertools6-dev qt6-quick3d-dev qt6-quick3d-dev-tools libqt6svg6-dev libqt6quicktimeline6-dev libqt6serialport6-dev 
+          sudo apt install -y ninja-build cmake clang-tidy clang-format
+
+      - name: Configure CMake
+        working-directory: ${{github.workspace}}
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
+          cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          mv compile_commands.json ..
+
+      - name: Run clang-format
+        working-directory: ${{github.workspace}}
+        run: find . -type d -name '*build*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -print | grep -E '\.(cpp|h)$' | xargs clang-format -n
+
+#  test:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#
+#      - uses: actions/checkout@v4
+#
+#      - name: Install Deps
+#        run: |
+#          sudo apt-get update
+#          sudo apt-get install build-essential libgl1-mesa-dev libc++-dev libc++abi-dev binutils binutils-dev clang gdb pkg-config
+#          sudo apt install -y xvfb x11-utils libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 xdotool
+#          sudo apt install -y qt6-base-dev qt6-base-private-dev qt6-declarative-dev qt6-declarative-private-dev qt6-tools-dev qt6-tools-private-dev qt6-scxml-dev qt6-documentation-tools libqt6core5compat6-dev qt6-tools-dev-tools qt6-l10n-tools qt6-shader-baker libqt6shadertools6-dev qt6-quick3d-dev qt6-quick3d-dev-tools libqt6svg6-dev libqt6quicktimeline6-dev libqt6serialport6-dev
+#          sudo apt install -y ninja-build cmake
+#
+#      - name: Configure CMake
+#        working-directory: ${{github.workspace}}
+#        run: |
+#          mkdir build
+#          cd build
+#          cmake .. -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G Ninja
+#          cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+#          mv compile_commands.json ..
+#
+#      - name: Build
+#        working-directory: ${{github.workspace}}/build
+#        run: ninja
+#
+#      - name: Test
+#        working-directory: ${{github.workspace}}/build
+#        run: xvfb-run --auto-servernum ctest . -VV
+
