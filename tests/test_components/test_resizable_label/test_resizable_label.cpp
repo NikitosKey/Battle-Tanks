@@ -1,4 +1,5 @@
 #include "test_resizable_label.h"
+
 #include "resizable_label.h"
 
 void TestResizableQLabel::testPixmapScalingOnResize() {
@@ -8,9 +9,8 @@ void TestResizableQLabel::testPixmapScalingOnResize() {
     QPixmap pixmap(400, 400);
     pixmap.fill(Qt::red);
 
-    label.setPixmap(pixmap);
-    label.resizeEvent(new QResizeEvent(
-            QSize(200, 200), QSize(400, 400)));
+    label.setOriginalPixmap(pixmap);
+    label.resizeEvent(new QResizeEvent(QSize(200, 200), QSize(400, 400)));
     QVERIFY(!label.pixmap().isNull());
     QCOMPARE(label.pixmap().size(), QSize(200, 200));
 

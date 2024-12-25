@@ -1,11 +1,16 @@
-#include "resizable_label.h"
+#include "components/resizable_label/resizable_label.h"
+
+namespace {
+const int kMinWidth = 100;
+const int kMinHeight = 100;
+}  // namespace
 
 ResizableLabel::ResizableLabel(QWidget *parent) : QLabel(parent) {
-    setMinimumSize(100, 100);
+    setMinimumSize(kMinWidth, kMinHeight);
 }
 
-void ResizableLabel::setPixmap(const QPixmap &pixmap) {
-    originalPixmap = pixmap;
+void ResizableLabel::setOriginalPixmap(const QPixmap &pixmap) {
+    originalPixmap_ = pixmap;
 }
 
 void ResizableLabel::resizeEvent(QResizeEvent *event) {
@@ -14,9 +19,9 @@ void ResizableLabel::resizeEvent(QResizeEvent *event) {
 }
 
 void ResizableLabel::updateScaledPixmap() {
-    if (!originalPixmap.isNull()) {
-        QLabel::setPixmap(originalPixmap.scaled(size(), Qt::KeepAspectRatio,
-                                                Qt::SmoothTransformation));
+    if (!originalPixmap_.isNull()) {
+        QLabel::setPixmap(originalPixmap_.scaled(size(), Qt::KeepAspectRatio,
+                                                 Qt::SmoothTransformation));
     }
 }
 
