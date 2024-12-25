@@ -10,14 +10,26 @@
 
 #include "debug_log.h"
 
+/**
+ * \class GameLayout
+ * \brief A QGridLayout subclass for the game layout.
+ */
 class GameLayout : public QGridLayout {
     Q_OBJECT
 
 public:
+    /**
+     * \brief Constructs a GameLayout.
+     */
     GameLayout();
+
+    /**
+     * \brief Destructor for GameLayout.
+     */
     ~GameLayout() override;
 
 private:
+    // Add private members and methods here if needed
 };
 
 #endif

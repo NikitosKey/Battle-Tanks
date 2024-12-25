@@ -13,8 +13,8 @@ qt_add_executable(BattleTanks
         ui/game_layout/game_layout.h
         components/resizable_label/resizable_label.cpp
         components/resizable_label/resizable_label.h
-#        game/game_widget.cpp
-#        game/game_widget.h
+        #        game/game_widget.cpp
+        #        game/game_widget.h
 )
 
 target_include_directories(BattleTanks PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

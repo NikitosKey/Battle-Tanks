@@ -10,14 +10,26 @@
 
 #include "debug_log.h"
 
+/**
+ * \class ConstructionLayout
+ * \brief A QGridLayout subclass for the construction layout.
+ */
 class ConstructionLayout : public QGridLayout {
     Q_OBJECT
 
 public:
+    /**
+     * \brief Constructs a ConstructionLayout.
+     */
     ConstructionLayout();
+
+    /**
+     * \brief Destructor for ConstructionLayout.
+     */
     ~ConstructionLayout() override;
 
 private:
+    // Add private members and methods here if needed
 };
 
 #endif
